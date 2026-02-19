@@ -11,9 +11,6 @@ npm install
 # Run tests (no API key required)
 npm test
 
-# Run tests with coverage
-npm run test:coverage
-
 # Type-check
 npm run lint
 
@@ -162,14 +159,3 @@ See `.env.example` for the full list:
 | `UPS_OAUTH_URL` | No | OAuth token URL (defaults to production) |
 | `REQUEST_TIMEOUT_MS` | No | HTTP timeout in ms (defaults to 10000) |
 | `LOG_LEVEL` | No | Log level (defaults to "info") |
-
-## What I Would Improve Given More Time
-
-- **Retry logic with exponential backoff** — The `retryable` flag on errors provides the foundation; adding an automatic retry layer with configurable attempts and jitter would make the service more resilient.
-- **Structured logging** — Integrate a logger (e.g., pino) with correlation IDs for request tracing across carrier calls.
-- **Rate caching** — Cache rate responses with a short TTL to avoid redundant API calls for identical shipments.
-- **Additional UPS operations** — Label purchase, tracking, and address validation following the same operation pattern.
-- **Additional carriers** — FedEx, USPS, DHL implementations to prove the extensibility architecture in practice.
-- **OpenAPI spec generation** — Auto-generate API docs from the domain types if this were exposed as a REST service.
-- **Circuit breaker** — Wrap carrier calls with a circuit breaker to fail fast when a carrier is down.
-- **Metrics & monitoring** — Track request latency, error rates, and token refresh frequency per carrier.
